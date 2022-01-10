@@ -42,7 +42,7 @@ class Manager {
     deleteTable(table_name){
         this.connection.query(`DROP TABLE ${table_name};`,err =>{
             if(err){
-                throw new Error("Delere table failed: "+err)
+                throw new Error("Delete table failed: "+err)
             }
             console.log("Table successfully deleted")
         })
@@ -94,14 +94,20 @@ class Manager {
         })
     }
     insertInto(table_name,column,values){
-        this.connection.query(`INSERT INTO ${table_name} (${column.join()}) `+`
-            VALUES (${values.join(", ")})`, err =>{
+        this.connection.query(`INSERT INTO ${table_name} (${column.join("")}) VALUES (${values.join(", ")})`, err =>{
             if(err) {
                 throw new Error("INSERT INTO failed\n"+err)
             }
             console.log("Insert Into successfully")
         })
 
+    }
+
+    selectAll(table_name){
+        this.connection.query(`SELECT * FROM ${table_name}`,(err, result)=>{
+            if (err) throw err;
+            console.log(result);
+        })
     }
     endConnection(){
         this.connection.end()
