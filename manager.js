@@ -109,8 +109,8 @@ class Manager {
             return result
         })
     }
-    selectWithCondition(table_name,condition){
-        this.connection.query(`SELECT * FROM ${table_name} WHERE ${condition};`,(err, result)=>{
+    selectWithCondition(table_name,condition,column="*"){
+        this.connection.query(`SELECT ${column} FROM ${table_name} WHERE ${condition};`,(err, result)=>{
             if (err) throw err;
             console.log(result);
         })
