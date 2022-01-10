@@ -39,7 +39,14 @@ class Manager {
             console.log("Table successfully created")
         })
     }
-
+    deleteTable(table_name){
+        this.connection.query(`DROP TABLE ${table_name};`,err =>{
+            if(err){
+                throw new Error("Delere table failed: "+err)
+            }
+            console.log("Table successfully deleted")
+        })
+    }
     createDatabase (database_name){
         this.connection.query(`CREATE DATABASE IF NOT EXISTS ${database_name};`, (err) => {
             if (err){
