@@ -80,7 +80,7 @@ class Manager {
             if (err) {
                 throw new Error("Removing Column failed: " + err)
             }
-            console.log("Removing column successfuly")
+            console.log("Removing column successfully")
         })
     }
 
@@ -89,11 +89,20 @@ class Manager {
             if (err) {
                 throw new Error("Editing row failed: " + err)
             }
-            console.log("Editing row successfuly")
+            console.log("Editing row successfully")
 
         })
     }
+    insertInto(table_name,column,values){
+        this.connection.query(`INSERT INTO ${table_name} (${column.join()}) `+`
+            VALUES (${values.join(", ")})`, err =>{
+            if(err) {
+                throw new Error("INSERT INTO failed\n"+err)
+            }
+            console.log("Insert Into successfully")
+        })
 
+    }
     endConnection(){
         this.connection.end()
     }
