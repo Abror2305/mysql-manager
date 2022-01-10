@@ -103,14 +103,14 @@ class Manager {
 
     }
 
-    selectAll(table_name){
-        this.connection.query(`SELECT * FROM ${table_name}`,(err, result)=>{
+    selectAll(table_name,column="*"){
+        this.connection.query(`SELECT ${column} FROM ${table_name}`,(err, result)=>{
             if (err) throw err;
-            console.log(result);
+            return result
         })
     }
     selectWithCondition(table_name,condition){
-        this.connection.query(`SELECT ${condition} FROM ${table_name}`,(err, result)=>{
+        this.connection.query(`SELECT * FROM ${table_name} WHERE ${condition};`,(err, result)=>{
             if (err) throw err;
             console.log(result);
         })
