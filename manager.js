@@ -109,6 +109,12 @@ class Manager {
             console.log(result);
         })
     }
+    selectWithCondition(table_name,condition){
+        this.connection.query(`SELECT ${condition} FROM ${table_name}`,(err, result)=>{
+            if (err) throw err;
+            console.log(result);
+        })
+    }
     endConnection(){
         this.connection.end()
     }
